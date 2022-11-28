@@ -5,7 +5,6 @@ import express from 'express';
 import routeWelcome from './routes/route-welcome.js'
 import routeIndex from './routes/route-index.js'
 
-
 const app = express();
 
 app.set("view engine", "ejs");
