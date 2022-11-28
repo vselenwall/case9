@@ -3,9 +3,8 @@ import express from 'express';
 
 // imported routes
 import routeWelcome from './routes/route-welcome.js'
-import routeLogin from './routes/route-login.js'
-import routeRegister from './routes/route-register.js'
 import routeIndex from './routes/route-index.js'
+
 
 const app = express();
 
@@ -21,8 +20,6 @@ app.use('/', routeWelcome);
 app.use('/start', routeWelcome);
 app.use('/home', routeWelcome);
 
-app.use('/login', routeLogin);
-app.use('/register', routeRegister);
 app.use('/index', routeIndex);
 
 app.use((req, res, next) => {

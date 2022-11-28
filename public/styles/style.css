@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav ul li {
+    padding: 0.5rem;
+    background-color: deeppink;
+}
+
+button {
+    background-color: deeppink;
+    padding: 0.2rem;
+}
