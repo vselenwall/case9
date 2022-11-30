@@ -14,7 +14,9 @@ async function getPosts(req, res) {
 
     // const posts = await db.collection("posts").find({}).toArray();
 
-    const locals = {posts};
+    const locals = {
+        posts
+    };
 
     console.log("Posts here posts", posts);
     console.log("Posts here locals", locals);
@@ -22,5 +24,29 @@ async function getPosts(req, res) {
     res.render('index', locals);
 };
 
+async function addPost(req, res) {
 
-export default { getPosts };
+    try {
+        const {
+            location,
+            description
+        } = req.body;
+
+        const postDoc = new PostModel({
+            location,
+            description
+        });
+
+        postDoc.save();
+    } catch {
+        console.error("Error controller addpost", err);
+    } finally {
+        res.redirect("/index");
+       
+    }
+}
+
+export default {
+    getPosts,
+    addPost
+};

@@ -89,7 +89,6 @@ app.use('/index', routeIndex);
 // mongodbClient.close();
 
 
-// here
 // app.post('/posts', function(req, res) {
 //     postsCollection.insertOne(req.body)
 //     .then(result => {
