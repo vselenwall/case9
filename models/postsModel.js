@@ -13,7 +13,13 @@ if (!process.env.MONGODB_URL) {
 const db = process.env.MONGODB_URL;
 mongoose.connect(db);
 
-const postSchema = {
+if(db) { 
+    console.log("Connected to db");
+} else {
+    console.log("Not connected");
+}
+
+const postSchema = new mongoose.Schema({
   location: {
     type: String,
     required: "Fill in this",
@@ -22,7 +28,7 @@ const postSchema = {
     type: String,
     required: "Fill in this",
   }
-};
+}, {collection: "posts"});
 
 const PostModel = mongoose.model("Post", postSchema);
 

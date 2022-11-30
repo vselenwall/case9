@@ -16,7 +16,9 @@ async function getPosts(req, res) {
 
     const locals = {posts};
 
-    console.log("Posts here", posts);
+    console.log("Posts here posts", posts);
+    console.log("Posts here locals", locals);
+
     res.render('index', locals);
 };
 
