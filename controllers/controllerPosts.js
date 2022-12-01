@@ -20,7 +20,7 @@ async function getPosts(req, res) {
 
     console.log("Posts here posts", posts);
     console.log("Posts here locals", locals);
-
+    
     res.render('index', locals);
 };
 

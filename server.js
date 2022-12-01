@@ -7,6 +7,7 @@ import { MongoClient } from 'mongodb';
 // imported routes
 import routeWelcome from './routes/route-welcome.js'
 import routeIndex from './routes/route-index.js'
+import routeUser from './routes/route-user.js';
 
 const app = express();
 // const db = await connectDb();
@@ -28,6 +29,10 @@ app.use('/start', routeWelcome);
 app.use('/home', routeWelcome);
 
 app.use('/index', routeIndex);
+
+app.use('/register', routeUser);
+app.use('/login', routeUser);
+
 
 // dotenv.config();
 

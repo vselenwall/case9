@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,21 +8,30 @@
     <title>Sign up</title>
     <link rel="stylesheet" href="/styles/style.css">
 </head>
+
 <body>
 
     <!-- Header -->
-    <%- include("./partials/header-bf-login.ejs") %> 
+    <%- include("./partials/header-bf-login.ejs") %>
 
-    <!-- Main content -->
-    <h1>Become a member</h1>
-    <h2>Sign up at this page</h2>
+    <main class="main-register">
 
-    <input type="text" placeholder="Username">
-    <input type="password" placeholder="Password"><br>
+        <div class="register-info">
+            <h1>Let's begin this journey</h1>
+            <h2>Explore thousands of tips around your neighborhood</h2>
+        </div>
 
-    <input type="checkbox">I accept the <a href="/#">terms of use</a><br>
+        <div class="register-form">
+            <form action="/register" method="POST">
+                <input type="text" name="username" id="username" placeholder="Username"><br>
+                <input type="password" name="password" id="password" placeholder="Password"><br>
 
-    <button><a href="/index">Sign up</a></button>
-    
+                <input type="submit" value="Sign up">
+            </form>
+        </div>
+    </main>
+    <!-- Posta med fetch, json skicka/ta emot -->
+
 </body>
+
 </html>

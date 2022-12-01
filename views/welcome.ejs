@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="/styles/style.css">
+
 </head>
+
 <body>
 
-    <h1>Hi and welcome to this app</h1>
-    <h2>We will have a LOGO very soon</h2>
+    <main class="main-welcome">
+        <div class="overlay"></div>
+        <div class="welcome-sec-logo">
+            <h1 class="h1-welcome">EXPLORE DALSLAND LOGO</h1>
+            <div class="deco-line"></div>
+            <h2 class="h2-welcome">Save you favorite tips from local guides and share your own hidden gems.</h2>
+        </div>
 
-    <button><a href="/login">Log in</a></button><br>
-    <button><a href="/register">Become a member</a></button><br>
-    <a href="/index">Continue as a guest</a>
-    
+        <div class="welcome-sec-start">
+            <button class="welcome-login"><a href="/login">Log in</a></button><br>
+            <button class="welcome-register"><a href="/register">Become a member</a></button><br>
+            <a class="a-guestuser" href="/index">Continue as a guest</a>
+        </div>
+    </main>
+
 </body>
+
 </html>

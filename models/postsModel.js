@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 if (!process.env.MONGODB_URL) {
-  console.error("MONGODB_URL is not defined in .env file");
+  console.error("MONGODB_URL is not defined in .env file /postModel");
   exit();
 }
 

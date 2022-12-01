@@ -16,18 +16,6 @@
     <h1>Here's the feed were all the posts will show up</h1>
     <p>Imagine some posts here...</p>
 
-    <h2>Add new post</h2>
-    <form action="/index" method="POST">
-        <input type="text" name="location" id="location" placeholder="Where is this located..." />
-        <textarea name="description" id="description" cols="30" rows="10" placeholder="Describe your recommendation..."></textarea><br>
-        <input type="radio" name="radio-visible" id="visability">
-        <label for="radio-visible">Make public</label>
-        <input type="radio" name="radio-hidden" id="visability">
-        <label for="radio-visible">Save post</label><br>
-        <!-- <input type="file" id="image" name="image" accept="image/png, image/jpeg"><br> -->
-        <button type="submit">Share this</button>
-    </form>
-
     <h2>Here's the actual posts</h2>
     <ul>
     <% for(let i = 0; i < posts.length; i++) { %> 

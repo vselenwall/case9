@@ -4,6 +4,157 @@
     box-sizing: border-box;
 }
 
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+/* WELCOME */
+
+.main-welcome {
+    width: 100%; 
+    height: 100%;
+    background: url("/images/forest.jpg");
+    background-position: center;
+    background-size: cover;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-rows: 2fr 1fr;
+}
+
+.overlay {
+    background: #313528;
+    opacity: 50%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+}
+
+.welcome-sec-logo {
+    color: #F5F5F5;
+    padding: 2rem;
+    z-index: 10;
+    margin-top: 180px;
+}
+
+.deco-line {
+    height: 1px;
+    background: #F5F5F5;
+}
+
+.welcome-sec-start {
+    text-align: center;
+    padding: 2rem;
+    z-index: 10;
+    display: grid;
+    align-items: center;
+}
+
+/* WELCOME - Buttons, fonts */
+
+.welcome-login {
+    padding: 0.8rem;
+    width: 90%;
+    background: #8A8A6E;
+    border-radius: 35px;
+    text-transform: uppercase;
+    box-shadow: 1px 4px 4px -17px rgba(0, 0, 0, 0.80);
+    justify-self: center;
+}
+
+.welcome-register {
+    padding: 0.8rem;
+    width: 90%;
+    background: #F5F5F5;
+    border-radius: 35px;
+    text-transform: uppercase;
+    box-shadow: 1px 4px 4px -17px rgba(0, 0, 0, 0.80);
+    justify-self: center;
+}
+
+.welcome-register a {
+    color: #313528;
+    font-family: 'Inter', sans-serif;
+}
+
+.a-guestuser {
+    font-weight: bold;
+}
+
+.h1-welcome, .h2-wecome, .deco-line {
+    margin: 0.4rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.h1-welcome {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.h2-welcome {
+    font-size: 15px;
+    font-weight: 200;
+    margin-left: 5px;
+}
+
+a {
+    color: #F5F5F5;
+    text-decoration: none;
+}
+
+button {
+    border-style: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* REGISTER */
+
+.main-register {
+    width: 100%; 
+    height: 100%;
+    background: #8A8A6E;
+    display: grid;
+    /* grid-template-rows: 1fr 1fr 1fr 1fr; */
+}
+
+.register-info {
+    background-color: red;
+    text-align: center;
+    align-self: center;
+}
+
+.register-form {
+    background-color: bisque;
+    text-align: center;
+}
+
+h1, h2 {
+    margin: 0.4rem;
+    font-family: 'Inter', sans-serif;
+}
+
+h1 {
+    font-size: 25px;
+}
+
+h2 {
+    font-size: 15px;
+    font-weight: 200;
+}
+
+
+
+/* .header-bf-login {
+    background-color: #8A8A6E;
+} */
+
+
+
+
 nav ul li {
     padding: 0.5rem;
     background-color: deeppink;
