@@ -41,14 +41,14 @@ async function addPost(req, res) {
             description,
         } = req.body;
 
-        // const byUser = ObjectId(req.session.userID);
+        const byUser = ObjectId(req.session.userID);
 
         // Add visiblility from radio btns
 
         const postDoc = new PostModel({
             location,
-            description
-            // byUser
+            description,
+            byUser
         });
 
         postDoc.save();
