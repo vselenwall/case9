@@ -2,6 +2,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import { MongoClient } from 'mongodb';
+import session from 'express-session';
 // import connectDb from "./configurations/mongodb.js";
 
 // imported routes
@@ -13,10 +14,25 @@ const app = express();
 // const db = await connectDb();
 // const postsCollection = db.collection('posts');
 
+app.use(session({
+    secret: process.env.SESSION_SECRET || "secret",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60000 * 10 }
+}))
+
 // Middlewares
 app.use(express.urlencoded({ extended: true }))
 
 app.set("view engine", "ejs");
+
+function checkSession(req, res, next) {
+    console.log("session", req.session);
+
+    next();
+}
+
+app.use(checkSession);
 
 app.use(express.static("./public"));
 

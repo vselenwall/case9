@@ -111,25 +111,93 @@ button {
     font-size: 15px;
 }
 
-/* REGISTER */
+/* REGISTER & LOGIN */
 
 .main-register {
     width: 100%; 
     height: 100%;
     background: #8A8A6E;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+}
+
+.info-form-wrap {
     display: grid;
-    /* grid-template-rows: 1fr 1fr 1fr 1fr; */
+    vertical-align: center;
+
 }
 
 .register-info {
-    background-color: red;
+    color: #F5F5F5;
+    padding: 2rem;
     text-align: center;
     align-self: center;
 }
 
-.register-form {
-    background-color: bisque;
+.register-form, .login-form {
     text-align: center;
+    padding: 2rem;
+}
+
+#password {
+    background-color: #F5F5F5;
+    border-style: none;
+    padding: 0.8rem;
+    color: #313528;
+    border-radius: 0px 11px 11px 0px;
+    box-shadow: 1px 4px 4px -17px rgba(0, 0, 0, 0.80);
+}
+
+#username {
+    background-color: #F5F5F5;
+    border-style: none;
+    padding: 0.8rem;
+    color: #313528;
+    border-radius: 0px 11px 11px 0px;
+    box-shadow: 1px 4px 4px -17px rgba(0, 0, 0, 0.80);
+}
+
+.btn-signup {
+    border-style: none;
+    padding: 0.8rem;
+    width: 100%;
+    background: #313528;
+    border-radius: 11px;
+    text-transform: uppercase;
+    box-shadow: 1px 4px 4px -17px rgba(0, 0, 0, 0.80);
+    justify-self: center;
+    color: #F5F5F5;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.fa-solid, .fa-user {
+    background-color: #F5F5F5;
+    color: #313528;
+    padding: 0.8rem;
+}
+
+.fa-solid, .fa-key {
+    background-color: #F5F5F5;
+    color: #313528;
+    padding: 0.8rem;
+    border-radius: 11px 0px 0px 11px;
+}
+
+.user-register-logo {
+    display: grid;
+    border-radius: 11px;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+.pw-register-logo {
+    display: grid;
+    border-radius: 11px;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
 }
 
 h1, h2 {
@@ -146,7 +214,7 @@ h2 {
     font-weight: 200;
 }
 
-
+/* LOGIN */ 
 
 /* .header-bf-login {
     background-color: #8A8A6E;

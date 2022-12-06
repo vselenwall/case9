@@ -32,13 +32,27 @@ const addUserSchema = new mongoose.Schema(
     { collection: "users" }
   );
 
-// addUserSchema.methods.comparePassword = async function (plainTextPassword, hashedPassword) {
-    // try {
-        // return await bcrypt.compare(plainTextPassword, hashedPassword);
-    // } catch(err) {
-        // console.log("Password error");
-    // }
-// }
+addUserSchema.pre("save", function (next) {
+    try {   
+        if (!this.isModified("password")) {
+            return next();
+        }
+
+        this.password = bcrypt.hashSync(this.password, 10);
+        
+        next();
+    } catch (err) {
+        throw new Error("Incorrect password / userModel", err);
+    }
+});
+
+addUserSchema.methods.comparePassword = async function (plainTextPassword, hashedPassword) {
+    try {
+        return await bcrypt.compare(plainTextPassword, hashedPassword);
+    } catch(err) {
+        console.log("Password error / userModel");
+    }
+}
 
 const addUserModel = mongoose.model("Register", addUserSchema);
 

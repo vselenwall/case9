@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { exit } from "process";
 import dotenv from "dotenv";
+// import { ObjectId } from "mongodb";
 
 dotenv.config();
 
@@ -27,6 +28,15 @@ const postSchema = new mongoose.Schema({
   description: {
     type: String,
     required: "Fill in this",
+  },
+  visibility: {
+    type: String,
+    enum: ["public", "private"],
+    default: "public"
+  },
+  byUser: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'users'
   }
 }, {collection: "posts"});
 

@@ -10,10 +10,16 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", userController.registerUser);
+// router.post("/", userController.loginUser);
 
-router.post("/login", (req, res) => {
+router.get("/login", (req, res) => {
     res.render("login");
-    console.log("Hejhej");
 });
+
+router.post("/login", userController.loginUser);
+
+// router.get("/index", (req, res) => {
+//     res.render("index");
+// });
 
 export default router;
