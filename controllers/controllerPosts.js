@@ -12,9 +12,12 @@ import { ObjectId } from 'mongodb';
 
 async function getPosts(req, res) {
     
-    const posts = await PostModel.find({})
+    const posts = await PostModel.find({ visibility: 'public'}).populate("byUser", "username").exec();
 
-    // visibility: 'public'.populate("byUser", "username").exec();
+    const { userID } = req.session;
+    const byUser = await PostModel.find({ byUser: ObjectId(userID)});
+
+   
 
     // const posts = await db.collection("posts").find({}).toArray();
 
@@ -23,7 +26,8 @@ async function getPosts(req, res) {
 
     // userPosts 
     const locals = {
-        posts
+        posts,
+        byUser
     };
 
     // console.log("Posts here posts", posts);
@@ -60,7 +64,46 @@ async function addPost(req, res) {
     }
 }
 
+async function editPost(req, res) {
+    try {
+        const id = req.params.id;
+
+        const { location, description, visibility } = req.body;
+
+        await PostModel.updateOne(
+            { _id: ObjectId(id) }, 
+            { location, description, visibility }
+        );
+    } catch(err) {
+        console.error(err.message);
+        const q = new URLSearchParams({type: "success", message: err.message});
+        return res.redirect(`/index?${q}`);
+    } finally {
+        const q = new URLSearchParams({type: "success", message: "Post successfully updated"});
+        res.redirect(`/index?${q}`);
+      }
+}
+
+async function deletePost(req, res) {
+    try {
+      const { id } = req.params;
+    
+      const result = await PostModel.deleteOne({ _id: id });
+      
+      if (result.deletedCount == 0) {
+        throw {message: "No delete has been done"};
+      }
+  
+    } catch (err) {
+      console.error(err.message);
+    } finally {
+      res.redirect("/index");
+    }
+  }
+
 export default {
     getPosts,
-    addPost
+    addPost,
+    editPost,
+    deletePost
 };

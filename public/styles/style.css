@@ -7,6 +7,7 @@
 body {
     height: 100vh;
     width: 100vw;
+    background-color: #EFEFEF;
 }
 
 /* WELCOME */
@@ -173,13 +174,14 @@ button {
     font-size: 15px;
 }
 
-.fa-solid, .fa-user {
+.fa-user {
     background-color: #F5F5F5;
     color: #313528;
     padding: 0.8rem;
+    border-radius: 11px 0px 0px 11px;
 }
 
-.fa-solid, .fa-key {
+.fa-key {
     background-color: #F5F5F5;
     color: #313528;
     padding: 0.8rem;
@@ -221,6 +223,113 @@ h2 {
 } */
 
 
+/* INDEX - Posts */
+
+.posts-wrap {
+    background-color: #EFEFEF;
+}
+
+.li-posts {
+    background-color: #EFEFEF;
+    /* padding: 1rem; */
+    margin: 2rem 0 2rem 0;
+}
+
+.post-image {
+    width: 100%;
+    height: 200px;
+    background-color:#8A8A6E;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.image-wrapper {
+    display: grid;
+}
+
+.post-profile {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+.post-profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0.7rem;
+    background-color:#313528;
+}
+
+.post-user {
+    margin: 0.7rem;
+    display: grid;
+    align-items: center;
+    color: #50524d;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.post-loc-map-like {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0.5rem;
+    padding-left: 1.5rem;
+    margin-top: -3rem;
+    
+}
+
+.post-user-desc {
+    padding: 1.2rem;
+    /* display: grid;
+    margin-left: 1rem;
+    grid-template-columns: 1fr 1fr; */
+}
+
+.post-username {
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: #50524d;
+    font-weight: bold;
+}
+
+.post-description {
+    color: #50524d;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.5rem;
+}
+
+.fa-location-dot {
+    font-size: 1.2rem;
+    color: #EFEFEF;
+    margin-right: 0.5rem;
+}
+
+.post-location {
+    color: #EFEFEF;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+button .fa-heart, .fa-pen, .fa-trash {
+    font-size: 1.2rem;
+    padding: 0rem 0rem 0rem 1rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: space-between;
+    color: #EFEFEF;
+}
+
+.like-edit-del {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+
 
 
 nav ul li {
@@ -229,6 +338,6 @@ nav ul li {
 }
 
 button {
-    background-color: deeppink;
+    background-color:#8A8A6E;
     padding: 0.2rem;
 }

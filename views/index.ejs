@@ -1,56 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="/styles/style.css">
 </head>
+
 <body>
 
     <!-- Header -->
-    <%- include("./partials/header.ejs") %> 
+    <%- include("./partials/header.ejs") %>
 
     <!-- Feed -->
-    <h1>Here's the feed were all the posts will show up</h1>
-    <p>Imagine some posts here...</p>
 
-    <h2>Here's the actual posts</h2>
-    <ul>
-    <% for(let i = 0; i < posts.length; i++) { %> 
-        <li>
-            <span><%= posts[i].location %></span>
-            <b><%= posts[i].description %></b>
-            <b><%= posts[i].byUser %></b>
-        </li>
-    <% } %>
-</ul>
+    <div class="posts-wrap">
+        <ul>
+            <% for(let i = 0; i < posts.length; i++) { %>
+            <li class="li-posts">
+                <div class="post-profile">
+                    <div class="post-profile-pic"></div>
+                    <h3 class="post-user"><%= posts[i].byUser.username %></h3>
+                </div>
+
+                <div class="image-wrapper">
+                    <div class="post-image">No image yet</div>
+
+                    <div class="post-loc-map-like">
+                        <div class="post-location"><i class="fa-solid fa-location-dot"></i><%= posts[i].location %></p>
+                        </div>
+                        <!-- <div class="map">Map</div> -->
+                        <div class="like-edit-del">
+                            <button class="like-btn" onclick="handleLike('<%= posts[i]._id %>')"><i class="fa-regular fa-heart"></i></button>
+                            <button class="edit-btn" onclick="handleEdit('<%= posts[i]._id %>', '<%= posts[i].location %>', '<%= posts[i].description%>', '<%= posts[i].visibility %>')"><i class="fa-solid fa-pen"></i></button>
+                            <button class="remove-btn" onclick="handleRemove('<%= posts[i]._id %>')"><i class="fa-solid fa-trash"></i></button></div>
+                    </div>
+
+                    <!-- </div> -->
+                    <!--  -->
+
+                    <div class="post-user-desc">
+                        <div class="post-username"><%= posts[i].byUser.username %></div>
+                        <div class="post-description"><%= posts[i].description %></div>
+                    </div>
+
+            </li>
+            <% } %>
+        </ul>
+    </div>
+
+    <!-- Hidden, show when edit -->
+    <form id="edit-form" hidden>
+        <input type="text" name="location"/>
+        <textarea name="description" cols="30" rows="10"></textarea>
+        <!-- <input type="text" placeholder="description" name="description" /> -->
+        <!-- <fieldset>
+            <input type="radio" name="radio-visible" id="visability">
+            <label for="radio-visible">Make public</label>
+            <input type="radio" name="radio-hidden" id="visability">
+            <label for="radio-visible">Save post</label><br>
+        </fieldset> -->
+        <button type="submit">Save</button>
+      </form>
+
+    <!-- <script src="../functions.js"></script> -->
 
     <script>
+        function handleRemove(id) {
+            console.log("Removebtn triggered at: ", id);
 
-        // const form = document.querySelector("form");
-        // form.addEventListener("submit", (event) => {
+            fetch(`/index/${id}`, {
+                    method: "DELETE"
+                })
+                .then((resp) => {
+                    console.log(resp);
+                    if (resp.redirected) {
+                        window.location.href = resp.url;
+                    }
+                })
+                .catch((err) => console.log(err));
+        }
 
-        //     const location = document.querySelector("#location");
-        //     const password = document.querySelector("#description");
-        //     const formInfo = { location: location.value, description: description.value }
+        function handleEdit (id, bfLocation, bfDescription) {
+            console.log("Editbtn triggered at: ", id);
 
-        //     const options = {
-        //         method: 'POST',
-        //         headers: {'Content-Type': 'application/json'};
-        //         body: JSON.stringify(formInfo)
-        //     }
+            const editForm = document.getElementById("edit-form");
 
-        //     fetch("posts", options) 
-        //     .then(response => response.json())
-        //     .then((data) => {
-        //         console.log("Data", data);
-        //         document.querySelector("span").textContent = data.message;
-        //     });
-        // });
+            editForm.elements.location.value = bfLocation;
+            editForm.elements.description.value = bfDescription;
+
+            document.getElementById("edit-form").hidden = false;
+
+            editForm.onsubmit = (event) => {
+                event.preventDefault();
+
+                const newLocation = editForm.elements.location.value;
+                const newDescription = editForm.elements.description.value;
+
+                fetch(`/index/${id}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({location: newLocation, description: newDescription}), 
+                })
+                .then((resp) => {
+                    console.log(resp);
+                    if(resp.redirected) {
+                        window.location.href = resp.url;
+                    }
+                })
+                .catch((err) => console.log(err));
+            };
+        }
+
+        function handleLike (id) {
+            console.log("You liked this post: ", id)
+
+        }
 
     </script>
-    
+
 </body>
+
 </html>

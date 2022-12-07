@@ -54,6 +54,6 @@ addUserSchema.methods.comparePassword = async function (plainTextPassword, hashe
     }
 }
 
-const addUserModel = mongoose.model("Register", addUserSchema);
+const addUserModel = mongoose.model("users", addUserSchema);
 
 export default addUserModel;
