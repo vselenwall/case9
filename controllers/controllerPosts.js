@@ -80,7 +80,7 @@ async function editPost(req, res) {
 
         const result = await PostModel.updateOne(
             { _id: ObjectId(id) }, 
-            { location:location },{ description:description }
+            { location, description }
         );
 
         console.log("try", result, ObjectId(id),location,description);

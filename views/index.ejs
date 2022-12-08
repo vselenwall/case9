@@ -68,83 +68,82 @@
         </ul>
     </div>
 
-    <!-- Hidden, show when edit -->
-    <form id="edit-form" hidden>
-        <input type="text" name="location" />
-        <textarea name="description" cols="30" rows="10"></textarea>
-        <!-- <input type="text" placeholder="description" name="description" /> -->
-        <!-- <fieldset>
-            <input type="radio" name="radio-visible" id="visability">
-            <label for="radio-visible">Make public</label>
-            <input type="radio" name="radio-hidden" id="visability">
-            <label for="radio-visible">Save post</label><br>
-        </fieldset> -->
-        <button type="submit">Save</button>
-    </form>
+ <!-- Hidden, show when edit -->
+ <form id="edit-form" hidden>
+    <input type="text" name="location" />
+    <textarea name="description" cols="30" rows="10"></textarea>
+    <!-- <input type="text" placeholder="desc" name="desc" /> -->
+    <!-- <fieldset>
+        <input type="radio" name="radio-visible" id="visability">
+        <label for="radio-visible">Make public</label>
+        <input type="radio" name="radio-hidden" id="visability">
+        <label for="radio-visible">Save post</label><br>
+    </fieldset> -->
+    <button type="submit">Save</button>
+</form>
 
-    <!-- <script src="../functions.js"></script> -->
+<!-- <script src="../functions.js"></script> -->
 
-    <script>
-        function handleRemove(id) {
-            console.log("Removebtn triggered at: ", id);
+<script>
+    function handleRemove(id) {
+        console.log("Removebtn triggered at: ", id);
+
+        fetch(`/index/${id}`, {
+                method: "DELETE"
+            })
+            .then((resp) => {
+                console.log(resp);
+                if (resp.redirected) {
+                    window.location.href = resp.url;
+                }
+            })
+            .catch((err) => console.log(err));
+    }
+
+    function handleEdit(id, bfLocation, bfDescription) {
+
+        const editForm = document.getElementById("edit-form");
+
+        console.log("Editbtn triggered at: ", id);
+
+        editForm.elements.location.value = bfLocation;
+        editForm.elements.description.value = bfDescription;
+
+        console.log("Before loc: ", bfLocation, "Before desc: ", bfDescription);
+
+        document.getElementById("edit-form").hidden = false;
+
+        editForm.onsubmit = (evt) => {
+            evt.preventDefault();
+
+            const newLocation = editForm.elements.location.value;
+            const newDescription = editForm.elements.description.value;
+
+            console.log("New loc: ", newLocation, "New desc: ", newDescription);
+
 
             fetch(`/index/${id}`, {
-                    method: "DELETE"
+                    method: "PUT",
+                    headers: {
+                        "Content-Type" : "application/json",
+                    },
+                    body: JSON.stringify({
+                        location: newLocation,
+                        description: newDescription,
+                        id: id
+                    }),
                 })
                 .then((resp) => {
                     console.log(resp);
+                    console.log("New location from fetch: ", newLocation, newDescription);
                     if (resp.redirected) {
                         window.location.href = resp.url;
                     }
                 })
-                .catch((err) => console.log(err));
-        }
-
-        function handleEdit(id, bfLocation, bfDescription) {
-
-
-            const editForm = document.getElementById("edit-form");
-
-            console.log("Editbtn triggered at: ", id);
-
-            editForm.elements.location.value = bfLocation;
-            editForm.elements.description.value = bfDescription;
-
-            console.log(bfLocation);
-
-            document.getElementById("edit-form").hidden = false;
-
-            editForm.onsubmit = (evt) => {
-                evt.preventDefault();
-
-                const newLocation = editForm.elements.location.value;
-
-                console.log(newLocation);
-
-                const newDescription = editForm.elements.description.value;
-
-                fetch(`/index/${id}`, {
-                        method: "PUT",
-                        headers: {
-                            "Content-Type" : "application/json",
-                        },
-                        body: JSON.stringify({
-                            location: newLocation,
-                            description: newDescription,
-                            id: id
-                        }),
-                    })
-                    .then((resp) => {
-                        console.log(resp);
-                        console.log("New location from fetch: ", newLocation);
-                        if (resp.redirected) {
-                            window.location.href = resp.url;
-                        }
-                    })
-                    .catch((err) => console.error(err));
-            };
-        }
-    </script>
+                .catch((err) => console.error(err));
+        };
+    }
+</script>
 
 </body>
 

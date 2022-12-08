@@ -29,11 +29,11 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: "Fill in this",
   },
-  visibility: {
-    type: String,
-    enum: ["public", "private"],
-    default: "public"
-  },
+  // visibility: {
+  //   type: String,
+  //   enum: ["public", "private"],
+  //   default: "public"
+  // },
   byUser: {
     type: mongoose.Schema.ObjectId,
     ref: 'users'
