@@ -33,13 +33,19 @@
                     <div class="post-image">No image yet</div>
 
                     <div class="post-loc-map-like">
-                        <div class="post-location"><i class="fa-solid fa-location-dot"></i><%= posts[i].location %></p>
-                        </div>
+                        <p class="post-location"><%= posts[i].location %>
+                        </p>
+
+                        <!-- <i class="fa-solid fa-location-dot"></i> -->
                         <!-- <div class="map">Map</div> -->
                         <div class="like-edit-del">
-                            <button class="like-btn" onclick="handleLike('<%= posts[i]._id %>')"><i class="fa-regular fa-heart"></i></button>
-                            <button class="edit-btn" onclick="handleEdit('<%= posts[i]._id %>', '<%= posts[i].location %>', '<%= posts[i].description%>', '<%= posts[i].visibility %>')"><i class="fa-solid fa-pen"></i></button>
-                            <button class="remove-btn" onclick="handleRemove('<%= posts[i]._id %>')"><i class="fa-solid fa-trash"></i></button></div>
+                            <button class="like-btn" onclick="handleLike('<%= posts[i]._id %>')"><i
+                                    class="fa-regular fa-heart"></i></button>
+                            <button class="edit-btn"
+                                onclick="handleEdit('<%= posts[i]._id %>', '<%= posts[i].location %>', '<%= posts[i].description%>')"><i
+                                    class="fa-solid fa-pen"></i></button>
+                            <button class="remove-btn" onclick="handleRemove('<%= posts[i]._id %>')"><i
+                                    class="fa-solid fa-trash"></i></button></div>
                     </div>
 
                     <!-- </div> -->
@@ -57,7 +63,7 @@
 
     <!-- Hidden, show when edit -->
     <form id="edit-form" hidden>
-        <input type="text" name="location"/>
+        <input type="text" name="location" />
         <textarea name="description" cols="30" rows="10"></textarea>
         <!-- <input type="text" placeholder="description" name="description" /> -->
         <!-- <fieldset>
@@ -67,7 +73,7 @@
             <label for="radio-visible">Save post</label><br>
         </fieldset> -->
         <button type="submit">Save</button>
-      </form>
+    </form>
 
     <!-- <script src="../functions.js"></script> -->
 
@@ -87,44 +93,50 @@
                 .catch((err) => console.log(err));
         }
 
-        function handleEdit (id, bfLocation, bfDescription) {
-            console.log("Editbtn triggered at: ", id);
+        function handleEdit(id, bfLocation, bfDescription) {
+
 
             const editForm = document.getElementById("edit-form");
+
+            console.log("Editbtn triggered at: ", id);
 
             editForm.elements.location.value = bfLocation;
             editForm.elements.description.value = bfDescription;
 
+            console.log(bfLocation);
+
             document.getElementById("edit-form").hidden = false;
 
-            editForm.onsubmit = (event) => {
-                event.preventDefault();
+            editForm.onsubmit = (evt) => {
+                evt.preventDefault();
 
                 const newLocation = editForm.elements.location.value;
+
+                console.log(newLocation);
+
                 const newDescription = editForm.elements.description.value;
 
                 fetch(`/index/${id}`, {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({location: newLocation, description: newDescription}), 
-                })
-                .then((resp) => {
-                    console.log(resp);
-                    if(resp.redirected) {
-                        window.location.href = resp.url;
-                    }
-                })
-                .catch((err) => console.log(err));
+                        method: "PUT",
+                        headers: {
+                            "Content-Type" : "application/json",
+                        },
+                        body: JSON.stringify({
+                            location: newLocation,
+                            description: newDescription,
+                            id: id
+                        }),
+                    })
+                    .then((resp) => {
+                        console.log(resp);
+                        console.log("New location from fetch: ", newLocation);
+                        // if (resp.redirected) {
+                        //     window.location.href = resp.url;
+                        // }
+                    })
+                    .catch((err) => console.error(err));
             };
         }
-
-        function handleLike (id) {
-            console.log("You liked this post: ", id)
-
-        }
-
     </script>
 
 </body>

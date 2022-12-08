@@ -66,21 +66,27 @@ async function addPost(req, res) {
 
 async function editPost(req, res) {
     try {
-        const id = req.params.id;
+        // const id = req.params.id;
 
-        const { location, description, visibility } = req.body;
+        console.log(req.body);
 
-        await PostModel.updateOne(
+        const { location, description, id } = req.body;
+
+        const result = await PostModel.updateOne(
             { _id: ObjectId(id) }, 
-            { location, description, visibility }
+            { location:location },{ description:description }
         );
+
+        console.log("try", result, ObjectId(id),location,description);
     } catch(err) {
         console.error(err.message);
-        const q = new URLSearchParams({type: "success", message: err.message});
-        return res.redirect(`/index?${q}`);
+        // const q = new URLSearchParams({type: "failed", message: err.message});
+        // return res.redirect("/index");
     } finally {
-        const q = new URLSearchParams({type: "success", message: "Post successfully updated"});
-        res.redirect(`/index?${q}`);
+        // const q = new URLSearchParams({type: "success", message: "Post successfully updated"});
+        // res.redirect("/index");
+        // ${q}
+        console.log("finally");
       }
 }
 
