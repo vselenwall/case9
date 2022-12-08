@@ -20,6 +20,14 @@
 
     <!-- Feed -->
 
+    <div>
+        <% if (serverMsg) { %>
+          <span class="<%= serverMsg.type %>"><%= serverMsg.message %></span>
+        <% } %> 
+      </div>
+
+
+
     <div class="posts-wrap">
         <ul>
             <% for(let i = 0; i < posts.length; i++) { %>
@@ -33,10 +41,9 @@
                     <div class="post-image">No image yet</div>
 
                     <div class="post-loc-map-like">
-                        <p class="post-location"><%= posts[i].location %>
-                        </p>
+                        <div class="post-location"><i class="fa-solid fa-location-dot"></i><%= posts[i].location %>
+                        </div>
 
-                        <!-- <i class="fa-solid fa-location-dot"></i> -->
                         <!-- <div class="map">Map</div> -->
                         <div class="like-edit-del">
                             <button class="like-btn" onclick="handleLike('<%= posts[i]._id %>')"><i
@@ -130,9 +137,9 @@
                     .then((resp) => {
                         console.log(resp);
                         console.log("New location from fetch: ", newLocation);
-                        // if (resp.redirected) {
-                        //     window.location.href = resp.url;
-                        // }
+                        if (resp.redirected) {
+                            window.location.href = resp.url;
+                        }
                     })
                     .catch((err) => console.error(err));
             };

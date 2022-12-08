@@ -17,8 +17,6 @@ async function getPosts(req, res) {
     const { userID } = req.session;
     const byUser = await PostModel.find({ byUser: ObjectId(userID)});
 
-   
-
     // const posts = await db.collection("posts").find({}).toArray();
 
     // const {userId} = req.session
@@ -27,7 +25,8 @@ async function getPosts(req, res) {
     // userPosts 
     const locals = {
         posts,
-        byUser
+        byUser,
+        serverMsg: req.query
     };
 
     // console.log("Posts here posts", posts);
@@ -37,6 +36,7 @@ async function getPosts(req, res) {
 };
 
 async function addPost(req, res) {
+    let query = null; 
 
     try {
 
@@ -56,10 +56,16 @@ async function addPost(req, res) {
         });
 
         postDoc.save();
+
+        query = new URLSearchParams({type: "success", message: "You created a quote successfully"});
     } catch {
+        query = new URLSearchParams({type: "fail", message: err.message});
         console.error("Error controller addpost");
     } finally {
-        res.redirect("/index");
+
+        const qStr = query.toString();
+        res.redirect(`/index?${qStr}`);
+        // res.redirect("/index");
        
     }
 }
@@ -80,12 +86,13 @@ async function editPost(req, res) {
         console.log("try", result, ObjectId(id),location,description);
     } catch(err) {
         console.error(err.message);
-        // const q = new URLSearchParams({type: "failed", message: err.message});
-        // return res.redirect("/index");
+        const query = new URLSearchParams({type: "failed", message: err.message});
+        return res.redirect(`/index?${query}`);
+
     } finally {
-        // const q = new URLSearchParams({type: "success", message: "Post successfully updated"});
-        // res.redirect("/index");
-        // ${q}
+        const query = new URLSearchParams({type: "success", message: "Post successfully updated"});
+        res.redirect(`/index?${query}`);
+        
         console.log("finally");
       }
 }

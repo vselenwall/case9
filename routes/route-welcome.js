@@ -14,9 +14,22 @@ router.get("/", (req, res) => {
 //     res.render("login");
 // });
 
-router.get("/profile", (req, res) => {
-    res.render("profile");
-});
+// function checkAuth(req,res,next) {
+//     if (req.session.checkUser) {
+//         console.log("User is ok");
+//         next();
+//     } else {
+//         console.log("User is not ok");
+//         const q = (new URLSearchParams({type: "fail", message: "You must login to access content"})).toString();
+//         res.redirect(`/register/login?${q}`)
+//     }
+// }
+
+// router.use(checkAuth);
+
+// router.get("/profile", (req, res) => {
+//     res.render("profile");
+// });
 
 router.get("/post", (req, res) => {
     res.render("post");

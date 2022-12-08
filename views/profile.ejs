@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My profile</title>
     <link rel="stylesheet" href="/styles/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -14,9 +18,52 @@
     <!-- Header -->
     <%- include("./partials/header.ejs") %>
 
-    <h1>Hi username, this is your profile</h1>
-    <a href="#">Things you posted</a>
-    <a href="#">Things you liked</a>
+    <h1>Profile</h1>
+    <button><a href="#">Things you posted</a></button>
+    <button><a href="#">Things you liked</a></button>
+
+    <div class="posts-wrap">
+        <ul>
+            <% for(let i = 0; i < userPosts.length; i++) { %>
+            <li class="li-posts">
+                <div class="post-profile">
+                    <div class="post-profile-pic"></div>
+                    <h3 class="post-user"></h3>
+                </div>
+
+                <div class="image-wrapper">
+                    <div class="post-image">No image yet</div>
+
+                    <div class="post-loc-map-like">
+                        <div class="post-location"><i class="fa-solid fa-location-dot"></i><%= userPosts[i].location %>
+                        </div>
+
+                        <!-- <div class="map">Map</div> -->
+                        <div class="like-edit-del">
+
+                            <button class="like-btn" onclick="handleLike('<%= userPosts[i]._id %>')"><i
+                                    class="fa-regular fa-heart"></i></button>
+                            <button class="edit-btn"
+                                onclick="handleEdit('<%= userPosts[i]._id %>', '<%= userPosts[i].location %>', '<%= userPosts[i].description%>')"><i
+                                    class="fa-solid fa-pen"></i></button>
+                            <button class="remove-btn" onclick="handleRemove('<%= userPosts[i]._id %>')"><i
+                                    class="fa-solid fa-trash"></i></button></div>
+                    </div>
+
+                    <!-- </div> -->
+                    <!--  -->
+
+                    <div class="post-user-desc">
+                        <div class="post-username"><%= userPosts[i].byUser.username %></div>
+                        <div class="post-description"><%= userPosts[i].description %></div>
+                    </div>
+
+            </li>
+            <% } %>
+        </ul>
+    </div>
+
+
 
 </body>
 

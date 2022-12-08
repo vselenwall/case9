@@ -9,6 +9,7 @@ import session from 'express-session';
 import routeWelcome from './routes/route-welcome.js'
 import routeIndex from './routes/route-index.js'
 import routeUser from './routes/route-user.js';
+import routeProfile from './routes/route-profile.js'
 
 const app = express();
 // const db = await connectDb();
@@ -49,6 +50,8 @@ app.use('/index', routeIndex);
 
 app.use('/register', routeUser);
 app.use('/login', routeUser);
+
+app.use('/profile', routeProfile);
 
 
 // dotenv.config();
