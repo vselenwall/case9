@@ -1,5 +1,7 @@
 import profileController from '../controllers/controllerProfile.js'
 import express from 'express';
+import postsController from '../controllers/controllerPosts.js'
+// import userController from '../controllers/userController.js';
 
 const router = express.Router();
 
@@ -8,5 +10,9 @@ const router = express.Router();
 // });
 
 router.get('/', profileController.getUserPosts);
+
+router.put('/:id', postsController.editPost);
+
+// router.post("/login", userController.loginUser);
 
 export default router;

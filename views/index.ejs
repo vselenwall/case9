@@ -20,11 +20,11 @@
 
     <!-- Feed -->
 
-    <div>
+    
         <% if (serverMsg) { %>
-          <span class="<%= serverMsg.type %>"><%= serverMsg.message %></span>
+          <p class="<%= serverMsg.type %>"><%= serverMsg.message %></p>
         <% } %> 
-      </div>
+   
 
 
 
@@ -33,117 +33,41 @@
             <% for(let i = 0; i < posts.length; i++) { %>
             <li class="li-posts">
                 <div class="post-profile">
-                    <div class="post-profile-pic"></div>
+                    <div class="post-profile-pic"><img src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTA0fHxwZXJzb258ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt=""></div>
                     <h3 class="post-user"><%= posts[i].byUser.username %></h3>
                 </div>
 
                 <div class="image-wrapper">
-                    <div class="post-image">No image yet</div>
+                    <div class="post-image">
+                        <img src="https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Zm9yZXN0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" width="100%" height="200px" alt="">
+                    </div>
 
                     <div class="post-loc-map-like">
                         <div class="post-location"><i class="fa-solid fa-location-dot"></i><%= posts[i].location %>
                         </div>
 
                         <!-- <div class="map">Map</div> -->
-                        <div class="like-edit-del">
-                            <button class="like-btn" onclick="handleLike('<%= posts[i]._id %>')"><i
+                        <div class="like-edit-del-index">
+                            <button class="map-btn-index"><i class="fa-solid fa-map"></i></button>
+                            <button class="like-btn-index" onclick="handleLike('<%= posts[i]._id %>')"><i
                                     class="fa-regular fa-heart"></i></button>
-                            <button class="edit-btn"
-                                onclick="handleEdit('<%= posts[i]._id %>', '<%= posts[i].location %>', '<%= posts[i].description%>')"><i
-                                    class="fa-solid fa-pen"></i></button>
-                            <button class="remove-btn" onclick="handleRemove('<%= posts[i]._id %>')"><i
-                                    class="fa-solid fa-trash"></i></button></div>
                     </div>
 
                     <!-- </div> -->
                     <!--  -->
+                </div>
 
-                    <div class="post-user-desc">
-                        <div class="post-username"><%= posts[i].byUser.username %></div>
+                    
+                        <!-- <div class="post-username"><%= posts[i].byUser.username %></div> -->
                         <div class="post-description"><%= posts[i].description %></div>
-                    </div>
+                 
 
             </li>
             <% } %>
         </ul>
-    </div>
-
- <!-- Hidden, show when edit -->
- <form id="edit-form" hidden>
-    <input type="text" name="location" />
-    <textarea name="description" cols="30" rows="10"></textarea>
-    <!-- <input type="text" placeholder="desc" name="desc" /> -->
-    <!-- <fieldset>
-        <input type="radio" name="radio-visible" id="visability">
-        <label for="radio-visible">Make public</label>
-        <input type="radio" name="radio-hidden" id="visability">
-        <label for="radio-visible">Save post</label><br>
-    </fieldset> -->
-    <button type="submit">Save</button>
-</form>
-
-<!-- <script src="../functions.js"></script> -->
-
-<script>
-    function handleRemove(id) {
-        console.log("Removebtn triggered at: ", id);
-
-        fetch(`/index/${id}`, {
-                method: "DELETE"
-            })
-            .then((resp) => {
-                console.log(resp);
-                if (resp.redirected) {
-                    window.location.href = resp.url;
-                }
-            })
-            .catch((err) => console.log(err));
-    }
-
-    function handleEdit(id, bfLocation, bfDescription) {
-
-        const editForm = document.getElementById("edit-form");
-
-        console.log("Editbtn triggered at: ", id);
-
-        editForm.elements.location.value = bfLocation;
-        editForm.elements.description.value = bfDescription;
-
-        console.log("Before loc: ", bfLocation, "Before desc: ", bfDescription);
-
-        document.getElementById("edit-form").hidden = false;
-
-        editForm.onsubmit = (evt) => {
-            evt.preventDefault();
-
-            const newLocation = editForm.elements.location.value;
-            const newDescription = editForm.elements.description.value;
-
-            console.log("New loc: ", newLocation, "New desc: ", newDescription);
+  
 
 
-            fetch(`/index/${id}`, {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type" : "application/json",
-                    },
-                    body: JSON.stringify({
-                        location: newLocation,
-                        description: newDescription,
-                        id: id
-                    }),
-                })
-                .then((resp) => {
-                    console.log(resp);
-                    console.log("New location from fetch: ", newLocation, newDescription);
-                    if (resp.redirected) {
-                        window.location.href = resp.url;
-                    }
-                })
-                .catch((err) => console.error(err));
-        };
-    }
-</script>
 
 </body>
 

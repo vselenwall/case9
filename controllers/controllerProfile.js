@@ -8,8 +8,11 @@ async function getUserPosts(req, res) {
     const { userID } = req.session;
     const userPosts = await PostModel.find({ byUser: ObjectId(userID)});
 
+    const byUser = ObjectId(req.session.userID);
+
     const locals = {
         userPosts,
+        byUser,
         serverMsg: req.query
     };
 

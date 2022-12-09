@@ -87,11 +87,11 @@ async function editPost(req, res) {
     } catch(err) {
         console.error(err.message);
         const query = new URLSearchParams({type: "failed", message: err.message});
-        return res.redirect(`/index?${query}`);
+        return res.redirect(`/profile?${query}`);
 
     } finally {
         const query = new URLSearchParams({type: "success", message: "Post successfully updated"});
-        res.redirect(`/index?${query}`);
+        res.redirect(`/profile?${query}`);
         
         console.log("finally");
       }

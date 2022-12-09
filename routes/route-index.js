@@ -19,6 +19,5 @@ router.use(checkAuth);
 router.get('/', postsController.getPosts);
 router.post('/', postsController.addPost);
 router.delete('/:id', postsController.deletePost);
-router.put('/:id', postsController.editPost);
 
 export default router;
