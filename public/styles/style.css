@@ -135,14 +135,6 @@ nav ul li {
     grid-template-rows: 2fr 1fr;
 }
 
-.overlay {
-    background: #313528;
-    opacity: 50%;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-
-}
 
 .welcome-sec-logo {
     color: #F5F5F5;
@@ -557,10 +549,19 @@ textarea {
 }
 
 .overlay {
+    background: #313528;
+    opacity: 50%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.overlay {
     background-color: black;
-    height: 1000px;
+    height: 1200px;
     margin-top: -20rem;
 }
+
 
 .edit-form {
     background-color:#8A8A6E;
@@ -589,9 +590,41 @@ textarea {
 
 /* QUERYS */
 
-.query-login {
-    background-color: deeppink;
+.success {
+    background-color: #8A8A6E;
+    color: #F5F5F5;
+    padding: 2rem;
+    text-align: center;
+
+
+    font-family: 'Inter', sans-serif;
+    /* margin-left: 4rem; */
+    width: 100%;
+    z-index: 2;
+    position: absolute;
+    border-radius: 1 0 0 1rem;
+    box-shadow: rgba(0, 0, 0, 0.80) 0px 5px 15px;
 }
+/* 
+.success-p {
+    margin: 2rem;
+} */
+
+.btn-success {
+    margin-top: 2rem;
+}
+
+.fa-circle-check {
+    font-size: 30px;
+    margin: 1rem;
+}
+
+.display-none {
+    background-color: green;
+    display: none;
+}
+
+
 
 /* .profile-posted, .profile-liked {
     background-color: deeppink;

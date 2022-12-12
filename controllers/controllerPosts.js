@@ -43,16 +43,19 @@ async function addPost(req, res) {
         const {
             location,
             description,
+            visibility
         } = req.body;
 
         const byUser = ObjectId(req.session.userID);
 
         // Add visiblility from radio btns
 
+
         const postDoc = new PostModel({
             location,
             description,
-            byUser
+            byUser,
+            visibility
         });
 
         postDoc.save();
@@ -62,42 +65,42 @@ async function addPost(req, res) {
         query = new URLSearchParams({type: "fail", message: err.message});
         console.error("Error controller addpost");
     } finally {
-
         const qStr = query.toString();
         res.redirect(`/index?${qStr}`);
-        // res.redirect("/index");
        
     }
 }
 
 async function editPost(req, res) {
+    let query = null; 
+
     try {
         // const id = req.params.id;
 
         console.log(req.body);
 
-        const { location, description, id } = req.body;
+        const { location, description, visibility, id } = req.body;
 
         const result = await PostModel.updateOne(
             { _id: ObjectId(id) }, 
-            { location, description }
+            { location, description, visibility }
         );
 
-        console.log("try", result, ObjectId(id),location,description);
+        console.log("try", result, ObjectId(id),location,description, visibility);
+        query = new URLSearchParams({type: "success", message: "Post successfully updated"});
     } catch(err) {
         console.error(err.message);
-        const query = new URLSearchParams({type: "failed", message: err.message});
+        query = new URLSearchParams({type: "fail", message: err.message});
         return res.redirect(`/profile?${query}`);
-
     } finally {
-        const query = new URLSearchParams({type: "success", message: "Post successfully updated"});
-        res.redirect(`/profile?${query}`);
-        
+        res.redirect(`/profile?${query}`);      
         console.log("finally");
       }
 }
 
 async function deletePost(req, res) {
+    let query = null; 
+
     try {
       const { id } = req.params;
     
@@ -107,8 +110,10 @@ async function deletePost(req, res) {
         throw {message: "No delete has been done"};
       }
   
+      query = new URLSearchParams({type: "success", message: "Post successfully deleted"});
     } catch (err) {
       console.error(err.message);
+      query = new URLSearchParams({type: "fail", message: err.message});
     } finally {
       res.redirect("/index");
     }

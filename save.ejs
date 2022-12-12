@@ -15,3 +15,8 @@
     <% if (userPosts.username) { %>
         <%= userPosts.username %> 
     <% } %> 
+
+
+    <% if (serverMsg) { %>
+        <p class="<%= serverMsg.type %>"><%= serverMsg.message %></p>
+      <% } %> 

@@ -4,7 +4,7 @@ import PostModel from "../models/postsModel.js";
 
 async function registerUser(req, res) {
     // se om anv finns i db
-   // returnera obj som talar om ifall anv finns tex fail/success
+    // returnera obj som talar om ifall anv finns tex fail/success
 
     try {
         const {
@@ -36,14 +36,20 @@ async function loginUser(req, res) {
     const posts = await PostModel.find({});
 
     const locals = {
-        posts
+        posts,
+        serverMsg: req.query
     };
 
     try {
 
-        const {username, password} = req.body;
+        const {
+            username,
+            password
+        } = req.body;
 
-        const user = await addUserModel.findOne({username});
+        const user = await addUserModel.findOne({
+            username
+        });
 
         if (!user) {
             console.log("No user found");
@@ -62,14 +68,14 @@ async function loginUser(req, res) {
     } catch (err) {
         console.log("Error in loginUser / userController ", err);
         const query = new URLSearchParams({
-            type: "fail", 
+            type: "fail",
             message: "login failed",
         }).toString();
         return res.redirect(`/login?${query}`)
     } finally {
         const query = new URLSearchParams({
-            type: "success", 
-            message: "login successful",
+            type: "success",
+            message: "You're logged in, welcome",
         }).toString();
         return res.redirect(`/index?${query}`)
 
@@ -78,6 +84,26 @@ async function loginUser(req, res) {
     }
 }
 
+async function logOutUser(req, res) {
+    try {
+        req.session.destroy();
+    } catch (err) {
+        const query = (new URLSearchParams({
+            type: "fail",
+            message: "Log out failed",
+        })).toString();
+        return res.redirect(`/index?${query}`);
+    } finally {
+        const query = (new URLSearchParams({
+            type: "success",
+            message: "You're logged out, welcome back",
+        })).toString();
+        return res.redirect(`/register/login?${query}`);
+    }
+}
+
 export default {
-    registerUser, loginUser
+    registerUser,
+    loginUser,
+    logOutUser
 };

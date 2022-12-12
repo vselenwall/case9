@@ -16,8 +16,9 @@ router.get("/login", (req, res) => {
     res.render("login");
 });
 
-
 router.post("/login", userController.loginUser);
+
+router.get("/logout", userController.logOutUser);
 
 // router.get("/index", (req, res) => {
 //     res.render("index");

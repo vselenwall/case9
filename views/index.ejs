@@ -22,9 +22,8 @@
 
     
         <% if (serverMsg) { %>
-          <p class="<%= serverMsg.type %>"><%= serverMsg.message %></p>
+          <p id="server-message" class="<%= serverMsg.type %>"><i class="fa-solid fa-circle-check"></i><br><%= serverMsg.message %><br><button onclick="handleSuccess()" class="btn-success btn-signup">Thanks</button></p>
         <% } %> 
-   
 
 
 
@@ -67,7 +66,17 @@
         </ul>
   
 
+<script>
 
+    function handleSuccess() {
+       let serverMsg = document.getElementById("server-message");
+
+       serverMsg.classList.add("display-none");
+       console.log("Servermessage ok", serverMsg);
+    }
+
+
+</script>
 
 </body>
 
