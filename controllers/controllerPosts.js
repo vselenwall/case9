@@ -26,6 +26,7 @@ async function getPosts(req, res) {
     const locals = {
         posts,
         byUser,
+        userID,
         serverMsg: req.query
     };
 
@@ -34,6 +35,7 @@ async function getPosts(req, res) {
 
     res.render('index', locals);
 };
+
 
 async function addPost(req, res) {
     let query = null; 
@@ -109,13 +111,13 @@ async function deletePost(req, res) {
       if (result.deletedCount == 0) {
         throw {message: "No delete has been done"};
       }
-  
-      query = new URLSearchParams({type: "success", message: "Post successfully deleted"});
+      
     } catch (err) {
       console.error(err.message);
       query = new URLSearchParams({type: "fail", message: err.message});
     } finally {
-      res.redirect("/index");
+        query = new URLSearchParams({type: "success", message: "Post successfully deleted"});
+        res.redirect(`/profile?${query}`);  
     }
   }
 

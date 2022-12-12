@@ -588,6 +588,10 @@ textarea {
     margin-top: 1.5rem;
 }
 
+.posts-wrap-profile {
+    display: none;
+}
+
 /* QUERYS */
 
 .success {

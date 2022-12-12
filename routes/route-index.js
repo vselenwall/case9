@@ -18,6 +18,5 @@ router.use(checkAuth);
 
 router.get('/', postsController.getPosts);
 router.post('/', postsController.addPost);
-router.delete('/:id', postsController.deletePost);
 
 export default router;

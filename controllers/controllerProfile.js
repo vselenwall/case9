@@ -3,7 +3,7 @@ import { ObjectId } from 'mongodb';
 
 async function getUserPosts(req, res) {
     
-    // const posts = await PostModel.find({ visibility: 'public'}).populate("byUser", "username").exec();
+    // const posts = await PostModel.find({ visibility: 'private'}).populate("byUser", "username").exec();
 
     const { userID } = req.session;
     const userPosts = await PostModel.find({ byUser: ObjectId(userID)});

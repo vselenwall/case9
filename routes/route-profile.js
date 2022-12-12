@@ -10,8 +10,8 @@ const router = express.Router();
 // });
 
 router.get('/', profileController.getUserPosts);
-
 router.put('/:id', postsController.editPost);
+router.delete('/:id', postsController.deletePost);
 
 // router.post("/login", userController.loginUser);
 

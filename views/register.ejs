@@ -18,6 +18,10 @@
     <!-- Header -->
     <%- include("./partials/header-bf-login.ejs") %>
 
+    <% if (serverMsg.message) { %>
+        <p id="server-message" class="<%= serverMsg.type %>"><i class="fa-solid fa-circle-check"></i><br><%= serverMsg.message %><br><button onclick="handleSuccess()" class="btn-success btn-signup">Thanks</button></p>
+      <% } %>
+
     <main class="main-register">
 
         <div class="info-form-wrap">
@@ -37,7 +41,6 @@
         </div>
 
     </main>
-    <!-- Posta med fetch, json skicka/ta emot -->
 
 </body>
 

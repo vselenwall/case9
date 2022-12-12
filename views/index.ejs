@@ -21,13 +21,13 @@
     <!-- Feed -->
 
     
-        <% if (serverMsg) { %>
+        <% if (serverMsg.message) { %>
           <p id="server-message" class="<%= serverMsg.type %>"><i class="fa-solid fa-circle-check"></i><br><%= serverMsg.message %><br><button onclick="handleSuccess()" class="btn-success btn-signup">Thanks</button></p>
         <% } %> 
 
 
-
-    <div class="posts-wrap">
+    <div class="profile-posts">
+    
         <ul>
             <% for(let i = 0; i < posts.length; i++) { %>
             <li class="li-posts">
@@ -67,6 +67,10 @@
   
 
 <script>
+
+    function handleLike() {
+        console.log("Like btn is triggered")
+    }
 
     function handleSuccess() {
        let serverMsg = document.getElementById("server-message");
