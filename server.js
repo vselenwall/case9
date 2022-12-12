@@ -19,7 +19,7 @@ app.use(session({
     secret: process.env.SESSION_SECRET || "secret",
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 60000 * 10 }
+    cookie: { maxAge: 6000000 * 10 }
 }))
 
 // Middlewares

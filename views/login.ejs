@@ -17,16 +17,22 @@
     <!-- Header -->
     <%- include("./partials/header-bf-login.ejs") %>
 
-    <% if (serverMsg.message) { %>
-        <p id="server-message" class="<%= serverMsg.type %>"><i class="fa-solid fa-circle-check"></i><br><%= serverMsg.message %><br><button onclick="handleSuccess()" class="btn-success btn-signup">Thanks</button></p>
-      <% } %> 
+    <% if (serverMsg.message && serverMsg.type === "success") { %>
+        <p id="server-message" class="<%= serverMsg.type %>"><i class="fa-solid fa-circle-check"></i><br><%= serverMsg.message %><br><button onclick="handleSuccess()" class="btn-success btn-signup">Ok</button></p>
+      <% } %>
+
+      <% if (serverMsg.message && serverMsg.type === "fail") { %>
+        <p id="server-message" class="<%= serverMsg.type %>">
+            <i class="fa-solid fa-umbrella"></i><br><%= serverMsg.message %><br><button onclick="handleSuccess()"
+                class="btn-success btn-signup">Ok</button></p>
+        <% } %>
 
     <main class="main-register">
 
         <div class="info-form-wrap">
         <div class="register-info">
-            <h1>We were expecting you</h1>
-            <h2>Let's continue</h2>
+            <h1>Login <i class="fa-solid fa-mosquito"></i></h1>
+            <h2>Fill in your username and password to continue</h2>
         </div>
 
         <div class="register-form">
@@ -40,6 +46,16 @@
         </div>
 
     </main>
+
+    <script>
+        function handleSuccess() {
+       let serverMsg = document.getElementById("server-message");
+
+       serverMsg.classList.add("display-none");
+       console.log("Servermessage ok", serverMsg);
+    }
+
+</script>
 
 </body>
 

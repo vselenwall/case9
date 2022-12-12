@@ -10,6 +10,7 @@ async function getUserPosts(req, res) {
 
     const byUser = ObjectId(req.session.userID);
 
+
     const locals = {
         userPosts,
         byUser,

@@ -21,9 +21,10 @@
     <!-- Feed -->
 
     
-        <% if (serverMsg.message) { %>
+        <% if (serverMsg.type === "success") { %>
           <p id="server-message" class="<%= serverMsg.type %>"><i class="fa-solid fa-circle-check"></i><br><%= serverMsg.message %><br><button onclick="handleSuccess()" class="btn-success btn-signup">Thanks</button></p>
         <% } %> 
+
 
 
     <div class="profile-posts">

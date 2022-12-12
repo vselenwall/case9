@@ -3,6 +3,8 @@ import postsController from '../controllers/controllerPosts.js';
 
 const router = express.Router();
 
+router.get('/', postsController.getPosts);
+
 function checkAuth(req,res,next) {
     if (req.session.checkUser) {
         console.log("User is ok");
@@ -16,7 +18,6 @@ function checkAuth(req,res,next) {
 
 router.use(checkAuth);
 
-router.get('/', postsController.getPosts);
 router.post('/', postsController.addPost);
 
 export default router;

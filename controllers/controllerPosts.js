@@ -1,14 +1,5 @@
-// import connectDb from "../configurations/mongodb.js";
-// import PostModel, { PostSchema } from "../models/postsModel.js";
 import PostModel from '../models/postsModel.js'
 import { ObjectId } from 'mongodb';
-
-// const db = await connectDb();
-
-// // const db = client.db("explore-app");
-// // const postCollection = db.collection("explore-app");
-
-// const postsCollection = db.collection('posts');
 
 async function getPosts(req, res) {
     
@@ -17,21 +8,12 @@ async function getPosts(req, res) {
     const { userID } = req.session;
     const byUser = await PostModel.find({ byUser: ObjectId(userID)});
 
-    // const posts = await db.collection("posts").find({}).toArray();
-
-    // const {userId} = req.session
-    // const userPosts = await PostModel.find({byUser: ObjectId(userId)});
-
-    // userPosts 
     const locals = {
         posts,
         byUser,
         userID,
         serverMsg: req.query
     };
-
-    // console.log("Posts here posts", posts);
-    // console.log("Posts here locals", locals);
 
     res.render('index', locals);
 };
@@ -50,9 +32,6 @@ async function addPost(req, res) {
 
         const byUser = ObjectId(req.session.userID);
 
-        // Add visiblility from radio btns
-
-
         const postDoc = new PostModel({
             location,
             description,
@@ -62,9 +41,9 @@ async function addPost(req, res) {
 
         postDoc.save();
 
-        query = new URLSearchParams({type: "success", message: "You created a quote successfully"});
+        query = new URLSearchParams({type: "success", message: "You created a post"});
     } catch {
-        query = new URLSearchParams({type: "fail", message: err.message});
+        query = new URLSearchParams({type: "fail", message: "Something went wrong, please try again"});
         console.error("Error controller addpost");
     } finally {
         const qStr = query.toString();

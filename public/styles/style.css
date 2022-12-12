@@ -545,7 +545,7 @@ textarea {
     display: grid;
     justify-content: center;
     align-items: center;
-    margin-top: -35rem;
+    margin-top: -25rem;
 }
 
 .overlay {
@@ -579,7 +579,6 @@ textarea {
 .location-edit {
     display: grid;
     border-radius: 11px;
-    display: grid;
     grid-template-columns: 1fr 5fr;
     padding-top: 2rem;
 }
@@ -609,6 +608,27 @@ textarea {
     border-radius: 1 0 0 1rem;
     box-shadow: rgba(0, 0, 0, 0.80) 0px 5px 15px;
 }
+
+.fail {
+    background-color: #8A8A6E;
+    color: #F5F5F5;
+    padding: 2rem;
+    text-align: center;
+
+    font-family: 'Inter', sans-serif;
+    /* margin-left: 4rem; */
+    width: 100%;
+    z-index: 2;
+    position: absolute;
+    border-radius: 1 0 0 1rem;
+    box-shadow: rgba(0, 0, 0, 0.80) 0px 5px 15px;
+
+}
+
+.profile-info {
+    text-align: center;
+    margin-top: 2rem;
+}
 /* 
 .success-p {
     margin: 2rem;
@@ -618,17 +638,25 @@ textarea {
     margin-top: 2rem;
 }
 
-.fa-circle-check {
+.fa-circle-check, .fa-umbrella {
     font-size: 30px;
     margin: 1rem;
+
 }
+
 
 .display-none {
     background-color: green;
     display: none;
 }
 
+button {
+    border-style: none;
+}
 
+button a {
+    font-weight: bold;
+}
 
 /* .profile-posted, .profile-liked {
     background-color: deeppink;

@@ -20,3 +20,9 @@
     <% if (serverMsg) { %>
         <p class="<%= serverMsg.type %>"><%= serverMsg.message %></p>
       <% } %> 
+
+      <% if (serverMsg.message && serverMsg.message.type === "fail") { %>
+        <p id="server-message" class="<%= serverMsg.type %>">
+            <i class="fa-solid fa-mosquito"></i><br><%= serverMsg.message %><br><button onclick="handleSuccess()"
+                class="btn-success btn-signup">Ok</button></p>
+        <% } %>

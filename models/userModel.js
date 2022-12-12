@@ -25,7 +25,7 @@ const addUserSchema = new mongoose.Schema(
       password: {
         type: String,
         required: "Add a password",
-        minLength: 8,
+        minLength: 4,
         maxLength: 50,
       },
     },

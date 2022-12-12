@@ -24,16 +24,13 @@
             class="btn-success btn-signup">Thanks</button></p>
     <% } %>
 
-    <div class="profile-header">
-        <% for(let i = 0; i < userPosts.length; i++) { %>
-        <p><%= userPosts[i].byUser.username %></p>
-        <% } %>
-
-        <h1>Hi, username</h1>
+    <div class="profile-info">
+        <h1>Profile</h1>
         <h2>This is your posts</h2>
-        <!-- <button class="profile-posted"><a href="#">Things you posted</a></button>
+    </div>
+    <!-- <button class="profile-posted"><a href="#">Things you posted</a></button>
     <button class="profile-liked"><a href="#">Things you liked</a></button> -->
-        <!-- 
+    <!-- 
         <button onclick="handleProfilePosts()">Your posts</button>
         <button onclick="handleProfileLikes()">Your likes</button> -->
 
@@ -183,6 +180,15 @@
                 };
             }
 
+            function handleSuccess() {
+                let serverMsg = document.getElementById("server-message");
+
+                serverMsg.classList.add("display-none");
+                console.log("Servermessage ok", serverMsg);
+            }
+        </script>
+
+        <script>
             function handleSuccess() {
                 let serverMsg = document.getElementById("server-message");
 

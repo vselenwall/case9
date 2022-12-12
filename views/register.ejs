@@ -19,7 +19,7 @@
     <%- include("./partials/header-bf-login.ejs") %>
 
     <% if (serverMsg.message) { %>
-        <p id="server-message" class="<%= serverMsg.type %>"><i class="fa-solid fa-circle-check"></i><br><%= serverMsg.message %><br><button onclick="handleSuccess()" class="btn-success btn-signup">Thanks</button></p>
+        <p id="server-message" class="<%= serverMsg.type %>"><i class="fa-solid fa-circle-check"></i><br><%= serverMsg.message %><br><button onclick="handleSuccess()" class="btn-success btn-signup">Ok</button></p>
       <% } %>
 
     <main class="main-register">
@@ -32,8 +32,8 @@
 
         <div class="register-form">
             <form action="/login" method="POST">
-                <div class="user-register-logo"><i class="fa-solid fa-user"></i><input type="text" name="username" id="username"><br></div>
-                <div class="pw-register-logo"><i class="fa-solid fa-key"></i><input type="password" name="password" id="password"></div><br>
+                <div class="user-register-logo"><i class="fa-solid fa-user"></i><input type="text" name="username" id="username" required><br></div>
+                <div class="pw-register-logo"><i class="fa-solid fa-key"></i><input type="password" name="password" id="password" required></div><br>
 
                 <input type="submit" class="btn-signup" value="Sign up">
             </form>
@@ -41,6 +41,15 @@
         </div>
 
     </main>
+    <script>
+        function handleSuccess() {
+       let serverMsg = document.getElementById("server-message");
+
+       serverMsg.classList.add("display-none");
+       console.log("Servermessage ok", serverMsg);
+    }
+
+</script>
 
 </body>
 
