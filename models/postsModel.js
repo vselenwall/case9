@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
-import { exit } from "process";
+import {
+  exit
+} from "process";
 import dotenv from "dotenv";
-// import { ObjectId } from "mongodb";
 
 dotenv.config();
 
@@ -10,14 +11,13 @@ if (!process.env.MONGODB_URL) {
   exit();
 }
 
-// connect to database
 const db = process.env.MONGODB_URL;
 mongoose.connect(db);
 
-if(db) { 
-    console.log("Connected to db");
+if (db) {
+  console.log("Connected to db");
 } else {
-    console.log("Not connected");
+  console.log("Not connected");
 }
 
 const postSchema = new mongoose.Schema({
@@ -38,7 +38,9 @@ const postSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'users'
   }
-}, {collection: "posts"});
+}, {
+  collection: "posts"
+});
 
 const PostModel = mongoose.model("Post", postSchema);
 

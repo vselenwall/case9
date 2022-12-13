@@ -55,47 +55,25 @@ header {
 .dropbtn {
     color: #F5F5F5;
     background-color: #313528;
-    /* padding: 16px; */
     font-size: 25px;
     border: none;
     cursor: pointer;
     border: none;
 
-  }
-  
-  /* Dropdown button on hover & focus */
-  /* .dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
-  } */
-  
-  /* The container <div> - needed to position the dropdown content */
-  /* .dropdown {
-    position: relative;
-    display: inline-block;
-  } */
-  
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
+}
+
+.dropdown-content {
     display: none;
     position: absolute;
-    background-color:#313528;
+    background-color: #313528;
     min-width: 160px;
-    /* margin-left: -18.5rem; */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.8);
     z-index: 1;
     width: 100vw;
-  }
+}
 
-
-  /* .dropdown-content-wrapper {
-   display: grid;
-   align-items: center;
-   justify-content: center;
-  } */
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color:#F5F5F5;
+.dropdown-content a {
+    color: #F5F5F5;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -103,28 +81,16 @@ header {
     font-family: 'Inter', sans-serif;
     text-transform: uppercase;
     padding: 1.5rem;
-  }
-  
-  /* Change color of dropdown links on hover */
-  /* .dropdown-content a:hover {background-color: #ddd;} */
-  
-  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-  .show {display:block;}
-
-/* .bf-login {
-    text-align: center;
 }
 
-nav ul li {
-    padding: 0.5rem;
-    background-color: deeppink;
-    text-align: center;
-} */
+.show {
+    display: block;
+}
 
 /* WELCOME */
 
 .main-welcome {
-    width: 100%; 
+    width: 100%;
     height: 100%;
     background: url("/images/forest.jpg");
     background-position: center;
@@ -187,7 +153,9 @@ nav ul li {
     font-weight: bold;
 }
 
-.h1-welcome, .h2-wecome, .deco-line {
+.h1-welcome,
+.h2-wecome,
+.deco-line {
     margin: 0.4rem;
     font-family: 'Inter', sans-serif;
 }
@@ -208,22 +176,14 @@ a {
     text-decoration: none;
 }
 
-/* button {
-    border-style: none;
-    font-family: 'Inter', sans-serif;
-    font-weight: bold;
-    font-size: 15px;
-    background-color: none;
-} */
-
 /* REGISTER & LOGIN */
 
 .main-register {
-    width: 100%; 
+    width: 100%;
     height: 100%;
     background: #8A8A6E;
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
 }
 
@@ -240,7 +200,8 @@ a {
     align-self: center;
 }
 
-.register-form, .login-form {
+.register-form,
+.login-form {
     text-align: center;
     padding: 2rem;
 }
@@ -306,7 +267,8 @@ a {
     grid-template-columns: 1fr 5fr;
 }
 
-h1, h2 {
+h1,
+h2 {
     margin: 0.4rem;
     font-family: 'Inter', sans-serif;
 }
@@ -320,12 +282,7 @@ h2 {
     font-weight: 200;
 }
 
-/* LOGIN */ 
-
-/* .header-bf-login {
-    background-color: #8A8A6E;
-} */
-
+/* LOGIN - same as register */
 
 /* INDEX - Posts */
 
@@ -335,18 +292,17 @@ h2 {
 
 .li-posts {
     background-color: #EFEFEF;
-    /* padding: 1rem; */
     margin: 2rem 0 2rem 0;
 }
 
 .post-image img {
     width: 100%;
     height: 200px;
-    background-color:#8A8A6E;
+    background-color: #8A8A6E;
     justify-content: center;
     align-items: center;
     display: flex;
-    object-fit:cover;
+    object-fit: cover;
 
 }
 
@@ -365,7 +321,7 @@ h2 {
     object-fit: cover;
     border-radius: 50%;
     margin: 0.7rem;
-    background-color:#313528;
+    background-color: #313528;
 
 }
 
@@ -386,7 +342,7 @@ h2 {
     padding: 0.5rem;
     padding-left: 1.5rem;
     margin-top: -3rem;
-    
+
 }
 
 .post-description {
@@ -422,7 +378,10 @@ h2 {
     font-weight: bold;
 }
 
-button .fa-heart, .fa-pen, .fa-trash, .map-btn-index {
+button .fa-heart,
+.fa-pen,
+.fa-trash,
+.map-btn-index {
     font-size: 1.2rem;
     padding: 0rem 0rem 0rem 1rem;
     grid-template-columns: 1fr 1fr 1fr;
@@ -432,7 +391,9 @@ button .fa-heart, .fa-pen, .fa-trash, .map-btn-index {
 
 }
 
-.edit-btn, .like-btn, .remove-btn {
+.edit-btn,
+.like-btn,
+.remove-btn {
     background-color: transparent;
     border: none;
 }
@@ -444,14 +405,6 @@ button .fa-heart, .fa-pen, .fa-trash, .map-btn-index {
     background-color: transparent;
 
 }
-
-/* .like-edit-del-index {
-    text-align: center;
-    display: grid;
-    grid-template-columns: 9fr;
-    background-color: transparent;
-
-} */
 
 .like-btn-index {
     background-color: transparent;
@@ -492,10 +445,9 @@ button .fa-heart, .fa-pen, .fa-trash, .map-btn-index {
 }
 
 .main-post {
-    width: 100%; 
+    width: 100%;
     height: 100%;
     padding: 2rem;
-    /* display: grid; */
 }
 
 .post-header {
@@ -530,7 +482,7 @@ textarea {
 }
 
 #visability {
-   margin: 0.5rem;
+    margin: 0.5rem;
 }
 
 /* PROFILE */
@@ -564,7 +516,7 @@ textarea {
 
 
 .edit-form {
-    background-color:#8A8A6E;
+    background-color: #8A8A6E;
     text-align: center;
     padding: 2rem;
     z-index: 2;
@@ -629,21 +581,16 @@ textarea {
     text-align: center;
     margin-top: 2rem;
 }
-/* 
-.success-p {
-    margin: 2rem;
-} */
 
 .btn-success {
     margin-top: 2rem;
 }
 
-.fa-circle-check, .fa-umbrella {
+.fa-circle-check,
+.fa-umbrella {
     font-size: 30px;
     margin: 1rem;
-
 }
-
 
 .display-none {
     background-color: green;
@@ -657,16 +604,3 @@ button {
 button a {
     font-weight: bold;
 }
-
-/* .profile-posted, .profile-liked {
-    background-color: deeppink;
-    padding: 1rem;
-    border: none;
-} */
-
-
-
-/* button {
-    background-color:#8A8A6E;
-    padding: 0.2rem;
-} */

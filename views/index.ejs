@@ -15,73 +15,67 @@
 
 <body>
 
-    <!-- Header -->
     <%- include("./partials/header.ejs") %>
 
-    <!-- Feed -->
+    <!-- Server messag style -->
+    <% if (serverMsg.type === "success") { %>
+    <p id="server-message" class="<%= serverMsg.type %>"><i
+            class="fa-solid fa-circle-check"></i><br><%= serverMsg.message %><br><button onclick="handleSuccess()"
+            class="btn-success btn-signup">Thanks</button></p>
+    <% } %>
 
-    
-        <% if (serverMsg.type === "success") { %>
-          <p id="server-message" class="<%= serverMsg.type %>"><i class="fa-solid fa-circle-check"></i><br><%= serverMsg.message %><br><button onclick="handleSuccess()" class="btn-success btn-signup">Thanks</button></p>
-        <% } %> 
 
-
-
+    <!-- All profile posts -->
     <div class="profile-posts">
-    
+
         <ul>
             <% for(let i = 0; i < posts.length; i++) { %>
             <li class="li-posts">
                 <div class="post-profile">
-                    <div class="post-profile-pic"><img src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTA0fHxwZXJzb258ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt=""></div>
+                    <div class="post-profile-pic"><img
+                            src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTA0fHxwZXJzb258ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+                            alt=""></div>
                     <h3 class="post-user"><%= posts[i].byUser.username %></h3>
                 </div>
 
                 <div class="image-wrapper">
                     <div class="post-image">
-                        <img src="https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Zm9yZXN0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" width="100%" height="200px" alt="">
+                        <img src="https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Zm9yZXN0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                            width="100%" height="200px" alt="">
                     </div>
 
                     <div class="post-loc-map-like">
                         <div class="post-location"><i class="fa-solid fa-location-dot"></i><%= posts[i].location %>
                         </div>
 
-                        <!-- <div class="map">Map</div> -->
                         <div class="like-edit-del-index">
                             <button class="map-btn-index"><i class="fa-solid fa-map"></i></button>
                             <button class="like-btn-index" onclick="handleLike('<%= posts[i]._id %>')"><i
                                     class="fa-regular fa-heart"></i></button>
+                        </div>
+
                     </div>
-
-                    <!-- </div> -->
-                    <!--  -->
-                </div>
-
                     
-                        <!-- <div class="post-username"><%= posts[i].byUser.username %></div> -->
-                        <div class="post-description"><%= posts[i].description %></div>
-                 
+                    <div class="post-description"><%= posts[i].description %></div>
 
             </li>
             <% } %>
         </ul>
-  
-
-<script>
-
-    function handleLike() {
-        console.log("Like btn is triggered")
-    }
-
-    function handleSuccess() {
-       let serverMsg = document.getElementById("server-message");
-
-       serverMsg.classList.add("display-none");
-       console.log("Servermessage ok", serverMsg);
-    }
 
 
-</script>
+        <script>
+
+            function handleLike() {
+                console.log("Like btn is triggered")
+            }
+
+            function handleSuccess() {
+                let serverMsg = document.getElementById("server-message");
+
+                serverMsg.classList.add("display-none");
+                console.log("Servermessage ok", serverMsg);
+            }
+        </script>
 
 </body>
 

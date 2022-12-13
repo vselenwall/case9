@@ -1,18 +1,22 @@
 import addUserModel from "../models/userModel.js";
 import PostModel from "../models/postsModel.js";
-// import postsController from "../models/postsModel.js";
 
+// render register
 async function getRegister(req, res) {
-    res.render("register", {serverMsg: req.query})
+    res.render("register", {
+        serverMsg: req.query
+    })
 }
 
+// render login
 async function getLogin(req, res) {
-    res.render("login", {serverMsg: req.query})
+    res.render("login", {
+        serverMsg: req.query
+    })
 }
 
+// "become a member", add a user
 async function registerUser(req, res) {
-    // se om anv finns i db
-    // returnera obj som talar om ifall anv finns tex fail/success
 
     let query = null;
 
@@ -27,12 +31,10 @@ async function registerUser(req, res) {
             password
         });
 
-        if(username.value === "" || password.value === "") {
+        if (username.value === "" || password.value === "") {
             throw new Error("Username or password is wrong")
         }
 
-        // tex const result = user.save(); - annat än null = är sparad
-        // returnera obj om att det gick bra 
         userDoc.save();
 
         query = new URLSearchParams({
@@ -40,28 +42,20 @@ async function registerUser(req, res) {
             message: "User successfully created",
         }).toString();
 
-        console.log("Try");
-
         return res.redirect(`/register/login?${query}`);
 
     } catch {
-        // console.error("Error controller / reg user", error);
         query = new URLSearchParams({
             type: "fail",
             message: "You need to fill in both username and password",
         }).toString();
 
-        // res.redirect("/register");
         res.redirect(`/register?${query}`);
-        console.log("Catch");
-    } 
-    
-    // finally {
-    //     
-    //     console.log("User succesfully created");
-    // }
+    }
+
 }
 
+// login existing user 
 async function loginUser(req, res) {
     let query = null;
 
@@ -83,12 +77,14 @@ async function loginUser(req, res) {
             username
         });
 
+        // if username dosent exist in db
         if (!user) {
             throw new Error("Wrong username");
         }
 
         const checkUser = await user.comparePassword(password, user.password);
 
+        // check if user auth
         if (!checkUser) {
             console.log("User is not ahutentificated");
             throw new Error("No user found");
@@ -104,20 +100,21 @@ async function loginUser(req, res) {
         return res.redirect(`/index?${query}`)
 
     } catch (err) {
-        console.log("Error in loginUser / userController ", err);
-       
         query = new URLSearchParams({
             type: "fail",
             message: "Wrong password or username, try again",
         }).toString();
 
-       return res.redirect(`/register/login?${query}`)
-        
-    } 
+        return res.redirect(`/register/login?${query}`)
+
+    }
 }
 
+// log out user, get login 
 async function logOutUser(req, res) {
     try {
+
+        // destroy session
         req.session.destroy();
     } catch (err) {
         const query = (new URLSearchParams({

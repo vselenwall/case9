@@ -1,50 +1,42 @@
 <header>
-    <div class="header-logo">LOGO</div>
-    <div class="header-post"><a href="/post"><i class="fa-solid fa-circle-plus"></i></a></div>
-    <nav class="af-login">
-       <!-- <menu>
-        <ul>
-            <li><a href="/index">Start</a></li>
-            <li><a href="/profile">My profile</a></li>
-            <li><a href="/post">Add post</a></li>
-            <li><a href="/register">Become a member</a></li>
-            <li><a href="/#">Log out</a></li>
-        </ul>
-       </menu> -->
+  <div class="header-logo">LOGO</div>
+  <div class="header-post"><a href="/post"><i class="fa-solid fa-circle-plus"></i></a></div>
+  <nav class="af-login">
 
-       
-        <div class="nav-btn"><button onclick="dropdownFunction()" class="dropbtn"><i class="fa-solid fa-bars"></i><i id="close-btn" class="fa-solid fa-xmark"></i></button></div>
+    <!-- Drop down menu: btn -->
+    <div class="nav-btn"><button onclick="dropdownFunction()" class="dropbtn"><i class="fa-solid fa-bars"></i><i
+          id="close-btn" class="fa-solid fa-xmark"></i></button></div>
+  </nav>
 
-    </nav>
-
-    <div class="dropdown-content-wrapper"><div id="myDropdown" class="dropdown-content">
-        <a href="/index">Start</a>
-        <a href="/profile">Profile</a>
-        <!-- <a href="/register">Register</a> -->
-        <a href="/register/logout">Log out</a>
-      </div>
+  <!-- Drop down menu: content -->
+  <div class="dropdown-content-wrapper">
+    <div id="myDropdown" class="dropdown-content">
+      <a href="/index">Start</a>
+      <a href="/profile">Profile</a>
+      <a href="/register/logout">Log out</a>
+    </div>
   </div>
 
-    <script>
-        /* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function dropdownFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-  document.getElementById("close-btn").classList.toggle("show");
-}
+  <script>
 
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.fa-bars')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
+    // function for dropdown
+    function dropdownFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+      document.getElementById("close-btn").classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function (event) {
+      if (!event.target.matches('.fa-bars')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
       }
     }
-  }
-}
-    </script>
+  </script>
 </header>

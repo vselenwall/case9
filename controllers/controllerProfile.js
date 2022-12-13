@@ -1,15 +1,14 @@
 import PostModel from '../models/postsModel.js'
 import { ObjectId } from 'mongodb';
 
+// get userPosts at profile
 async function getUserPosts(req, res) {
-    
-    // const posts = await PostModel.find({ visibility: 'private'}).populate("byUser", "username").exec();
 
     const { userID } = req.session;
+
+    // show the post posted by user
     const userPosts = await PostModel.find({ byUser: ObjectId(userID)});
-
     const byUser = ObjectId(req.session.userID);
-
 
     const locals = {
         userPosts,
@@ -18,28 +17,6 @@ async function getUserPosts(req, res) {
     };
 
     res.render('profile', locals);
-
-    // const posts = await PostModel.find({ visibility: 'public'}).populate("byUser", "username").exec();
-
-    // const { userID } = req.session;
-    // const byUser = await PostModel.find({ byUser: ObjectId(userID)});
-
-    // // const posts = await db.collection("posts").find({}).toArray();
-
-    // // const {userId} = req.session
-    // // const userPosts = await PostModel.find({byUser: ObjectId(userId)});
-
-    // // userPosts 
-    // const locals = {
-    //     posts,
-    //     byUser,
-    //     serverMsg: req.query
-    // };
-
-    // // console.log("Posts here posts", posts);
-    // // console.log("Posts here locals", locals);
-
-    // res.render('profile', locals);
 
 }; 
 

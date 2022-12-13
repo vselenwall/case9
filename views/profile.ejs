@@ -15,9 +15,9 @@
 
 <body>
 
-    <!-- Header -->
     <%- include("./partials/header.ejs") %>
 
+    <!-- Style server message -->
     <% if (serverMsg.message) { %>
     <p id="server-message" class="<%= serverMsg.type %>"><i
             class="fa-solid fa-circle-check"></i><br><%= serverMsg.message %><br><button onclick="handleSuccess()"
@@ -28,22 +28,14 @@
         <h1>Profile</h1>
         <h2>This is your posts</h2>
     </div>
-    <!-- <button class="profile-posted"><a href="#">Things you posted</a></button>
-    <button class="profile-liked"><a href="#">Things you liked</a></button> -->
-    <!-- 
-        <button onclick="handleProfilePosts()">Your posts</button>
-        <button onclick="handleProfileLikes()">Your likes</button> -->
 
     </div>
 
+    <!-- All profile posts -->
     <div class="posts-wrap">
         <ul>
             <% for(let i = 0; i < locals.userPosts.length; i++) { %>
             <li class="li-posts">
-                <!-- <div class="post-profile">
-                    <div class="post-profile-pic"></div>
-                    <h3 class="post-user"><%= userPosts[i].byUser.username %></h3>
-                </div> -->
 
                 <div class="image-wrapper">
                     <div class="post-image">
@@ -55,7 +47,6 @@
                         <div class="post-location"><i class="fa-solid fa-location-dot"></i><%= userPosts[i].location %>
                         </div>
 
-                        <!-- <div class="map">Map</div> -->
                         <div class="like-edit-del">
                             <button class="like-btn" onclick="handleLike('<%= userPosts[i]._id %>')"><i
                                     class="fa-regular fa-heart"></i></button>
@@ -65,10 +56,7 @@
                             <button class="remove-btn" onclick="handleRemove('<%= userPosts[i]._id %>')"><i
                                     class="fa-solid fa-trash"></i></button></div>
                     </div>
-
-                    <!-- </div> -->
                 </div>
-                <!--  -->
 
                 <div class="post-user-desc">
                     <div class="post-description"><%= userPosts[i].description %></div>
@@ -78,8 +66,7 @@
             <% } %>
         </ul>
 
-
-
+        <!-- Edit form hidden by default -->
         <form id="edit-form" hidden>
             <div class="overlay"></div>
             <div class="edit-form-wrap">
@@ -100,24 +87,10 @@
             </div>
         </form>
 
-        <!-- Hidden, show when edit -->
-
-
-
-        <!-- <script src="../functions.js"></script> -->
-
         <script>
-            // function handleProfilePosts() {
-            //     console.log("Profile posts btn is triggered");
-            //     let serverMsg = document.getElementById("server-message");
 
-            //     serverMsg.classList.add("display-none");
-            //     console.log("Servermessage ok", serverMsg);
-            // }
-
-
+            // remove function
             function handleRemove(id) {
-                console.log("Removebtn triggered at: ", id);
 
                 fetch(`/profile/${id}`, {
                         method: "DELETE"
@@ -131,20 +104,21 @@
                     .catch((err) => console.log(err));
             }
 
+            // edit function
             function handleEdit(id, bfLocation, bfDescription, bfVisibility) {
 
+                // reach edit form
                 const editForm = document.getElementById("edit-form");
 
-                console.log("Editbtn triggered at: ", id);
-
+                // get all current values 
                 editForm.elements.location.value = bfLocation;
                 editForm.elements.description.value = bfDescription;
                 editForm.elements.visibility.value = bfVisibility;
 
-                console.log("Before loc: ", bfLocation, "Before desc: ", bfDescription, "Before visi: ", bfVisibility);
-
+                // show edit form
                 document.getElementById("edit-form").hidden = false;
 
+                // on submit, get the new input values 
                 editForm.onsubmit = (evt) => {
                     evt.preventDefault();
 
@@ -152,10 +126,7 @@
                     const newDescription = editForm.elements.description.value;
                     const newVisibility = editForm.elements.visibility.value;
 
-                    console.log("New loc: ", newLocation, "New desc: ", newDescription, "New visi: ",
-                        newVisibility);
-
-
+                    // fetch the new values
                     fetch(`/profile/${id}`, {
                             method: "PUT",
                             headers: {
@@ -170,8 +141,6 @@
                         })
                         .then((resp) => {
                             console.log(resp);
-                            console.log("New location from fetch: ", newLocation, newDescription,
-                                newVisibility);
                             if (resp.redirected) {
                                 window.location.href = resp.url;
                             }
@@ -180,22 +149,14 @@
                 };
             }
 
+            // handle success server message, show when btn is triggered
             function handleSuccess() {
                 let serverMsg = document.getElementById("server-message");
-
                 serverMsg.classList.add("display-none");
-                console.log("Servermessage ok", serverMsg);
             }
+            
         </script>
 
-        <script>
-            function handleSuccess() {
-                let serverMsg = document.getElementById("server-message");
-
-                serverMsg.classList.add("display-none");
-                console.log("Servermessage ok", serverMsg);
-            }
-        </script>
 
 </body>
 
