@@ -1,9 +1,11 @@
-### Before starting 
-We will guide you to start this app through some simples steps. Let's start with the basics. 
+### Welcome to Dalsland Explore App
 
 ![Welcome](public/images/readme-pic/readme-2.png)
 ![Index](public/images/readme-pic/readme-ett.png)
 ![Post](public/images/readme-pic/readme-3.png)
+
+### Before starting 
+We will guide you to start this app through some simples steps. Let's start with the basics. 
 
 #### Get GitHub Repo
 Clone this GitHub Repo to your own VSC. You can do this by clicking on the <>code button and then choose to clone the repo.
