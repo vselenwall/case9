@@ -1,9 +1,9 @@
 ### Before starting 
 We will guide you to start this app through some simples steps. Let's start with the basics. 
 
-![Welcome](/Users/veronica/Documents/Plugg/Andra året/case9/public/images/readme-pic/readme-2.png)
-![Index](/Users/veronica/Documents/Plugg/Andra året/case9/public/images/readme-pic/readme-ett.png)
-![Post](/Users/veronica/Documents/Plugg/Andra året/case9/public/images/readme-pic/readme-3.png)
+![Welcome](public/images/readme-pic/readme-2.png)
+![Index](public/images/readme-pic/readme-ett.png)
+![Post](public/images/readme-pic/readme-3.png)
 
 #### Get GitHub Repo
 Clone this GitHub Repo to your own VSC. You can do this by clicking on the <>code button and then choose to clone the repo.
