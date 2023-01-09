@@ -49,7 +49,7 @@ async function addPost(req, res) {
             visibility
         });
 
-        postDoc.save();
+        await postDoc.save();
 
         query = new URLSearchParams({
             type: "success",
